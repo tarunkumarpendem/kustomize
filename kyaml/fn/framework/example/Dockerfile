@@ -7,6 +7,6 @@ WORKDIR /go/src/
 COPY . .
 RUN go build -v -o /usr/local/bin/function ./
 
-FROM alpine:latest
+FROM alpine:3.18.3
 COPY --from=0 /usr/local/bin/function /usr/local/bin/function
 CMD ["function"]
