@@ -1,7 +1,7 @@
 # Copyright 2019 The Kubernetes Authors.
 # SPDX-License-Identifier: Apache-2.0
 
-FROM alpine:latest as schemas
+FROM alpine:3.18.3 as schemas
 RUN apk --no-cache add git
 RUN git clone --depth 1 https://github.com/instrumenta/kubernetes-json-schema.git
 
@@ -14,7 +14,7 @@ RUN go mod download
 COPY main.go .
 RUN go build -v -o /usr/local/bin/config-function ./
 
-FROM alpine:latest
+FROM alpine:3.18.3
 COPY --from=schemas /kubernetes-json-schema/v1.16.0-standalone-strict /schemas/v1.16.0-standalone-strict
 COPY --from=function /usr/local/bin/config-function /usr/local/bin/config-function
 CMD ["config-function"]
