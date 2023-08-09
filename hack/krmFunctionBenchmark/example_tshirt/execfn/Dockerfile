@@ -1,7 +1,7 @@
 # Copyright 2022 The Kubernetes Authors.
 # SPDX-License-Identifier: Apache-2.0
 
-FROM alpine:latest
+FROM alpine:3.18.3
 
 ENV BUILD_HOME=/usr/local/build
 RUN apk update && apk add --no-cache git go
