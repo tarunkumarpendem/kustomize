@@ -5,7 +5,7 @@ FROM golang:1.19-bullseye
 ENV CGO_ENABLED=0
 RUN go get -v sigs.k8s.io/kustomize/kustomize
 
-FROM alpine:latest
+FROM alpine:3.18.3
 RUN apk add --no-cache bash
 COPY --from=0 /go/bin/kustomize /usr/local/bin
 COPY cockroachdb-template.sh /usr/local/bin/config-function
