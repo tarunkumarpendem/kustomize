@@ -15,7 +15,7 @@ RUN CGO_ENABLED=0 GO111MODULE=on go build \
     -X sigs.k8s.io/kustomize/api/provenance.buildDate=${DATE}"
 
 # only copy binary
-FROM alpine
+FROM alpine:3.18.3
 # install dependencies
 RUN apk add --no-cache git openssh
 COPY --from=builder /build/kustomize/kustomize /app/
